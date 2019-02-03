@@ -5,20 +5,18 @@ volumes:
   redis-data: {}
 
 services:
-  publisher:
+  processor:
     build:
       context: .
     volumes:
       - .:/app
-    depends_on:
-      - consumer
 
-  consumer:
+  worker:
     build:
       context: .
     volumes:
       - .:/app
-    command: ["python", "consumer.py"]
+    command: ["celery", "-A", "tasks", "worker", "--loglevel=info"]
     depends_on:
       - redis
       - postgres
