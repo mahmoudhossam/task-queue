@@ -15,3 +15,4 @@ class Processor:
 
 if __name__ == "__main__":
     processor = Processor("data_example.csv")
+    print("Done.")
