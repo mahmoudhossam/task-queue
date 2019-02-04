@@ -9,6 +9,7 @@ Base = declarative_base()
 
 class DB:
     def __init__(self):
+        """This connects to the database and sets up the session."""
         self.engine = create_engine("postgresql://user:password@postgres:5432/users")
         session_maker = sessionmaker(bind=self.engine)
         self.session = session_maker()
@@ -35,6 +36,7 @@ class User(Base):
 
 
 if __name__ == "__main__":
+    """This creates the database if it does not exist."""
     db = DB()
     if not database_exists(db.engine.url):
         create_database(db.engine.url)
