@@ -15,6 +15,7 @@ services:
       - redis
     entrypoint: /app/entrypoint.sh
     command: ["python", "processor.py"]
+    env_file: .environment
 
   worker:
     build:
@@ -22,6 +23,7 @@ services:
     volumes:
       - .:/app
     command: ["celery", "-A", "tasks", "worker", "--loglevel=info"]
+    env_file: .environment
     depends_on:
       - processor
 

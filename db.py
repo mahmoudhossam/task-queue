@@ -1,3 +1,4 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -10,7 +11,7 @@ Base = declarative_base()
 class DB:
     def __init__(self):
         """This connects to the database and sets up the session."""
-        self.engine = create_engine("postgresql://user:password@postgres:5432/users")
+        self.engine = create_engine(os.getenv("DATABASE_URL"))
         session_maker = sessionmaker(bind=self.engine)
         self.session = session_maker()
 

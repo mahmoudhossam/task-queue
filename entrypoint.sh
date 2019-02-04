@@ -4,12 +4,9 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-export DATABASE_URL="postgres://user:password@postgres:5432/users"
-
 postgres_ready() {
 python << END
 import sys
-
 import psycopg2
 
 try:

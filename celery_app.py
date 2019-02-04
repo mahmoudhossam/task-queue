@@ -1,12 +1,10 @@
 from __future__ import absolute_import, unicode_literals
 from celery import Celery
+import os
 
-app = Celery(
-    "queue",
-    broker="redis://redis:6379",
-    backend="redis://redis:6379",
-    imports=["tasks"],
-)
+broker_url = os.getenv("BROKER_URL")
+
+app = Celery("queue", broker=broker_url, backend=broker_url, imports=["tasks"])
 
 if __name__ == "__main__":
     app.start()
