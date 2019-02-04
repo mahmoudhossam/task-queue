@@ -15,7 +15,3 @@ COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
 USER queue
-
-ENTRYPOINT ["/app/entrypoint.sh"]
-
-CMD ["python", "processor.py"]

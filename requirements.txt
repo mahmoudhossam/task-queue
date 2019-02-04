@@ -4,4 +4,3 @@ sqlalchemy-utils==0.33.11
 git+git://github.com/celery/celery@master#egg=celery
 redis==3.1.0
 psycopg2-binary==2.7.7
-

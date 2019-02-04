@@ -10,6 +10,11 @@ services:
       context: .
     volumes:
       - .:/app
+    depends_on:
+      - postgres
+      - redis
+    entrypoint: /app/entrypoint.sh
+    command: ["python", "processor.py"]
 
   worker:
     build:
@@ -18,8 +23,7 @@ services:
       - .:/app
     command: ["celery", "-A", "tasks", "worker", "--loglevel=info"]
     depends_on:
-      - redis
-      - postgres
+      - processor
 
   redis:
     image: redis:5-alpine

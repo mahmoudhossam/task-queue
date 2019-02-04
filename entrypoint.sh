@@ -14,7 +14,7 @@ import psycopg2
 
 try:
     psycopg2.connect(
-        dbname="users",
+        dbname="postgres",
         user="user",
         password="password",
         host="postgres",
